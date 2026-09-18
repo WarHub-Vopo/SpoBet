@@ -11,6 +11,8 @@
             --card-bg: rgba(255, 255, 255, 0.95);
             --text-dark: #222222;
             --accent-gold: #d4af37;
+            --success-green: #2e7d32;
+            --danger-red: #c62828;
         }
 
         body {
@@ -111,7 +113,7 @@
             margin-bottom: 15px;
         }
 
-        /* Middle row: 3 smaller boxes (Tip, Score, Insurance Tip) */
+        /* Middle row: 3 stats boxes */
         .match-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -126,6 +128,7 @@
             text-align: center;
             font-size: 0.9rem;
             border: 1px solid #ced4da;
+            color: #333;
         }
 
         .stat-box span {
@@ -134,6 +137,26 @@
             color: var(--pitch-green);
             font-size: 1.1rem;
             margin-top: 3px;
+        }
+
+        /* ZELENÁ FARBA - Výhra / Úspešný tip */
+        .stat-box.win {
+            background-color: var(--success-green);
+            border-color: #1b5e20;
+            color: white;
+        }
+        .stat-box.win span {
+            color: white;
+        }
+
+        /* ČERVENÁ FARBA - Prehra / Neúspešný tip */
+        .stat-box.lose {
+            background-color: var(--danger-red);
+            border-color: #b71c1c;
+            color: white;
+        }
+        .stat-box.lose span {
+            color: white;
         }
 
         /* Bottom row: Analysis / Reason */
@@ -162,11 +185,13 @@
     <div class="container" id="matches-container">
 
         <!-- 
-            ADDING NEW MATCHES:
-            Always insert new matches at the very top of this list (right below this comment).
+            AKO DOPLŇOVAŤ VÝSLEDKY:
+            - Ak tip vyšiel, pridajte k okienku class="stat-box win"
+            - Ak tip nevyšiel, pridajte class="stat-box lose"
+            - Ak sa ešte hralo/nevyhodnotilo, nechajte len čistý class="stat-box"
         -->
 
-        <!-- MATCH 3 (Newest) -->
+        <!-- UKÁŽKA VYHODNOTENÉHO ZÁPASU (Brentford vs Chelsea - všetko vyšlo) -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -183,7 +208,7 @@
             </div>
         </div>
 
-        <!-- MATCH 2 -->
+        <!-- ZÁPAS 2 (Zatiaľ nevyhodnotený - klasické sivé rámčeky) -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -200,7 +225,7 @@
             </div>
         </div>
 
-        <!-- MATCH 1 -->
+        <!-- ZÁPAS 1 (Príklad, ak by napríklad vyšiel len tip a poistka, ale presné skóre nie) -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
