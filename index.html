@@ -34,11 +34,12 @@
             padding-bottom: 15px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* Logo Styling */
+        header img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
         }
 
         /* Stats Dashboard in Header */
@@ -195,8 +196,10 @@
 <body>
 
     <header>
-        <h1>⚽️SpoBet🏀</h1>
-        <!-- Nová sekcia pre štatistiky úspešnosti namiesto textu Private Beta -->
+        <!-- Vlastné logo z priečinka images -->
+        <img src="images/logo.png" alt="SpoBet Logo">
+        
+        <!-- Sekcia pre štatistiky úspešnosti -->
         <div class="header-stats">
             <div class="stat-badge">Tip Win Rate: <span id="rate-tip">0%</span></div>
             <div class="stat-badge">Score Win Rate: <span id="rate-score">0%</span></div>
@@ -206,7 +209,7 @@
 
     <div class="container" id="matches-container">
 
-        <!-- ZÁPAS 3 (Ukážka: Tip a Poistka vyšli, Skóre nie) -->
+        <!-- ZÁPAS 3 -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -223,7 +226,7 @@
             </div>
         </div>
 
-        <!-- ZÁPAS 2 (Zatiaľ nevyhodnotený) -->
+        <!-- ZÁPAS 2 -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -240,7 +243,7 @@
             </div>
         </div>
 
-        <!-- ZÁPAS 1 (Ukážka: Tip a Poistka win, Skóre lose) -->
+        <!-- ZÁPAS 1 -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -271,21 +274,21 @@
             cards.forEach(card => {
                 const boxes = card.querySelectorAll('.stat-box');
                 
-                // 1. Tip (prvý box)
+                // 1. Tip
                 if (boxes[0].classList.contains('win')) {
                     tipWins++; tipTotal++;
                 } else if (boxes[0].classList.contains('lose')) {
                     tipTotal++;
                 }
 
-                // 2. Score (druhý box)
+                // 2. Score
                 if (boxes[1].classList.contains('win')) {
                     scoreWins++; scoreTotal++;
                 } else if (boxes[1].classList.contains('lose')) {
                     scoreTotal++;
                 }
 
-                // 3. Insurance (tretí box)
+                // 3. Insurance
                 if (boxes[2].classList.contains('win')) {
                     insWins++; insTotal++;
                 } else if (boxes[2].classList.contains('lose')) {
@@ -298,7 +301,6 @@
             document.getElementById('rate-insurance').innerText = insTotal > 0 ? Math.round((insWins / insTotal) * 100) + '%' : '0%';
         }
 
-        // Spustiť výpočet po načítaní stránky
         calculateWinRates();
     </script>
 </body>
