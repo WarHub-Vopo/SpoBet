@@ -65,12 +65,11 @@
             transform: translateY(-2px);
         }
 
-        /* Top row: Date + Teams */
-        .match-header {
+        /* Top row: Date + League */
+        .match-top-row {
             display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .match-date {
@@ -81,12 +80,27 @@
             font-weight: bold;
             font-size: 0.85rem;
             text-align: center;
-            min-width: 80px;
+            white-space: nowrap;
         }
 
+        .match-league {
+            background: #e2e8f0;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-grow: 1;
+            text-align: center;
+            border: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Second row: Teams */
         .match-teams {
             background: #f4f4f4;
-            flex-grow: 1;
             padding: 12px 15px;
             border-radius: 6px;
             font-size: 1.25rem;
@@ -94,6 +108,7 @@
             text-align: center;
             color: #111;
             border: 1px solid #ddd;
+            margin-bottom: 15px;
         }
 
         /* Middle row: 3 smaller boxes (Tip, Score, Insurance Tip) */
@@ -151,12 +166,13 @@
             Always insert new matches at the very top of this list (right below this comment).
         -->
 
-        <!-- MATCH 10 (Newest) -->
+        <!-- MATCH 3 (Newest) -->
         <div class="match-card">
-            <div class="match-header">
+            <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
-                <div class="match-teams">Brentford VS Chelsea</div>
+                <div class="match-league">Football - Premier League</div>
             </div>
+            <div class="match-teams">Brentford VS Chelsea</div>
             <div class="match-stats">
                 <div class="stat-box">Tip: <span>2</span></div>
                 <div class="stat-box">Score: <span>1:2</span></div>
@@ -167,12 +183,13 @@
             </div>
         </div>
 
-        <!-- MATCH 9 -->
+        <!-- MATCH 2 -->
         <div class="match-card">
-            <div class="match-header">
+            <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
-                <div class="match-teams">Espanyol VS Elche</div>
+                <div class="match-league">Football - La Liga</div>
             </div>
+            <div class="match-teams">Espanyol VS Elche</div>
             <div class="match-stats">
                 <div class="stat-box">Tip: <span>1</span></div>
                 <div class="stat-box">Score: <span>2:1</span></div>
@@ -183,12 +200,13 @@
             </div>
         </div>
 
-        <!-- MATCH 8 -->
+        <!-- MATCH 1 -->
         <div class="match-card">
-            <div class="match-header">
+            <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
-                <div class="match-teams">Monza VS Sassuolo</div>
+                <div class="match-league">Football - Serie A</div>
             </div>
+            <div class="match-teams">Monza VS Sassuolo</div>
             <div class="match-stats">
                 <div class="stat-box">Tip: <span>2</span></div>
                 <div class="stat-box">Score: <span>1:2</span></div>
