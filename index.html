@@ -41,10 +41,27 @@
             letter-spacing: 2px;
         }
 
-        header p {
-            margin: 5px 0 0;
-            color: #ddd;
-            font-size: 0.9rem;
+        /* Stats Dashboard in Header */
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--accent-gold);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #f8f9fa;
+        }
+
+        .stat-badge span {
+            font-weight: bold;
+            color: var(--accent-gold);
         }
 
         .container {
@@ -179,19 +196,17 @@
 
     <header>
         <h1>⚽️SpoBet🏀</h1>
-        <p>Private Beta - Test Period</p>
+        <!-- Nová sekcia pre štatistiky úspešnosti namiesto textu Private Beta -->
+        <div class="header-stats">
+            <div class="stat-badge">Tip Win Rate: <span id="rate-tip">0%</span></div>
+            <div class="stat-badge">Score Win Rate: <span id="rate-score">0%</span></div>
+            <div class="stat-badge">Insurance Win Rate: <span id="rate-insurance">0%</span></div>
+        </div>
     </header>
 
     <div class="container" id="matches-container">
 
-        <!-- 
-            AKO DOPLŇOVAŤ VÝSLEDKY:
-            - Ak tip vyšiel, pridajte k okienku class="stat-box win"
-            - Ak tip nevyšiel, pridajte class="stat-box lose"
-            - Ak sa ešte hralo/nevyhodnotilo, nechajte len čistý class="stat-box"
-        -->
-
-        <!-- UKÁŽKA VYHODNOTENÉHO ZÁPASU (Brentford vs Chelsea - všetko vyšlo) -->
+        <!-- ZÁPAS 3 (Ukážka: Tip a Poistka vyšli, Skóre nie) -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -208,7 +223,7 @@
             </div>
         </div>
 
-        <!-- ZÁPAS 2 (Zatiaľ nevyhodnotený - klasické sivé rámčeky) -->
+        <!-- ZÁPAS 2 (Zatiaľ nevyhodnotený) -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -225,7 +240,7 @@
             </div>
         </div>
 
-        <!-- ZÁPAS 1 (Príklad, ak by napríklad vyšiel len tip a poistka, ale presné skóre nie) -->
+        <!-- ZÁPAS 1 (Ukážka: Tip a Poistka win, Skóre lose) -->
         <div class="match-card">
             <div class="match-top-row">
                 <div class="match-date">18.09.2026</div>
@@ -244,5 +259,47 @@
 
     </div>
 
+    <!-- Automatický výpočet úspešnosti -->
+    <script>
+        function calculateWinRates() {
+            const cards = document.querySelectorAll('.match-card');
+            
+            let tipWins = 0, tipTotal = 0;
+            let scoreWins = 0, scoreTotal = 0;
+            let insWins = 0, insTotal = 0;
+
+            cards.forEach(card => {
+                const boxes = card.querySelectorAll('.stat-box');
+                
+                // 1. Tip (prvý box)
+                if (boxes[0].classList.contains('win')) {
+                    tipWins++; tipTotal++;
+                } else if (boxes[0].classList.contains('lose')) {
+                    tipTotal++;
+                }
+
+                // 2. Score (druhý box)
+                if (boxes[1].classList.contains('win')) {
+                    scoreWins++; scoreTotal++;
+                } else if (boxes[1].classList.contains('lose')) {
+                    scoreTotal++;
+                }
+
+                // 3. Insurance (tretí box)
+                if (boxes[2].classList.contains('win')) {
+                    insWins++; insTotal++;
+                } else if (boxes[2].classList.contains('lose')) {
+                    insTotal++;
+                }
+            });
+
+            document.getElementById('rate-tip').innerText = tipTotal > 0 ? Math.round((tipWins / tipTotal) * 100) + '%' : '0%';
+            document.getElementById('rate-score').innerText = scoreTotal > 0 ? Math.round((scoreWins / scoreTotal) * 100) + '%' : '0%';
+            document.getElementById('rate-insurance').innerText = insTotal > 0 ? Math.round((insWins / insTotal) * 100) + '%' : '0%';
+        }
+
+        // Spustiť výpočet po načítaní stránky
+        calculateWinRates();
+    </script>
 </body>
 </html>
